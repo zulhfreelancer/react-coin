@@ -50,7 +50,7 @@ class List extends React.Component {
     // ES6 Destructuring
     // https://www.saltycrane.com/blog/2016/03/es6-features-used-react-development/#destructuring
     const {loading, error, currencies} = this.state;
-    
+
     if (loading) {
       return <div className="loading-container"><Loading /></div>
     }
@@ -78,10 +78,12 @@ class List extends React.Component {
                   {currency.name}
                 </td>
                 <td>
-                  <span className="Table-dollar">$ {currency.price}</span>
+                  <span className="Table-dollar">$</span>
+                  {currency.price}
                 </td>
                 <td>
-                  <span className="Table-dollar">$ {currency.marketCap}</span>
+                  <span className="Table-dollar">$</span>
+                  {currency.marketCap}
                 </td>
                 <td>
                   {this.renderChangePercent(currency.percentChange24h)}
