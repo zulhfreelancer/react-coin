@@ -56,3 +56,14 @@ body {
 input::-ms-clear {
   display: none;
 }
+
+.github_link_container {
+  text-align: center;
+  padding-bottom: 2rem;
+  color: #ffffff;
+  font-size: 0.8rem;
+}
+
+.github_link {
+  color: #ffffff;
+}
