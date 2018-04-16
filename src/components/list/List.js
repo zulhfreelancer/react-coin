@@ -21,8 +21,34 @@ class List extends React.Component {
     this.handlePaginationClick = this.handlePaginationClick.bind(this);
   }
 
+  // when user at `page/1`, replace `1` with `2` and hit enter
+  componentWillReceiveProps(nextProps) {
+    let newPage;
+    if (nextProps.location.pathname === "/") {
+      newPage = 1;
+    } else {
+      newPage = nextProps.match.params.page;
+    }
+    this.setPageAndFetchCurrencies(newPage);
+  }
+
+  // when user type the URL manually and hit enter in browser address bar
+  // or when user click their bookmark
+  componentWillMount() {
+    const {page} = this.props.match.params;
+    if (page) { // NaN check
+      this.setState({page: page});
+    }
+  }
+
   componentDidMount() {
     this.fetchCurrencies();
+  }
+
+  setPageAndFetchCurrencies(page) {
+    this.setState({ page: page }, () => {
+      this.fetchCurrencies();
+    });
   }
 
   fetchCurrencies() {
@@ -49,19 +75,15 @@ class List extends React.Component {
   }
 
   handlePaginationClick(direction) {
-    // console.log(this);
-
     let nextPage = this.state.page;
-
     if (direction === 'next') {
       nextPage++;
     } else {
       nextPage--;
     }
-
-    this.setState({ page: nextPage }, () => {
-      this.fetchCurrencies();
-    });
+    // allow user to go back from Detail page to the right page of the list
+    this.props.history.push(`/page/${nextPage}`);
+    this.setPageAndFetchCurrencies(nextPage);
   }
 
   render() {
