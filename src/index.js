@@ -14,14 +14,21 @@ const App = () => {
         <Header />
 
         <Switch>
-          <Route exact path="/" component={List} />
+          <Route exact path="/" component={List}  />
+          <Route exact path="/page/:page" component={List} />
           <Route exact path="/currency/:id" component={Detail} />
+
           <Route component={NotFound} />
         </Switch>
 
         <div className="github_link_container">
           View on {` `}
-          <a className="github_link" target="_blank" href="https://github.com/zulhfreelancer/react-coin">
+          <a
+            className="github_link"
+            target="_blank"
+            href="https://github.com/zulhfreelancer/react-coin"
+            rel="noopener noreferrer"
+          >
             GitHub
           </a>
         </div>
